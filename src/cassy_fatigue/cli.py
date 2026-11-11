@@ -171,9 +171,7 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         help="Ansys installation used to start a local server (default: found by DPF)",
     )
-    gui = commands.add_parser(
-        "gui", help="Open the configuration editor and results viewer (needs the gui extra)"
-    )
+    gui = commands.add_parser("gui", help="Open the configuration editor and results viewer")
     gui.add_argument(
         "config", type=Path, nargs="?", help="configuration YAML to edit, or a fatigue.vtu to view"
     )
@@ -203,12 +201,14 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def gui_main(argv: list[str] | None = None) -> int:
-    """Start the PySide6 editor, with a clear message if the optional extra is missing."""
+    """Start the PySide6 editor, with a clear message if Qt cannot be imported."""
     try:
         from cassy_fatigue.gui.app import main as run_gui
     except ImportError as error:
         logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-        logger.error("The GUI needs PySide6: pip install 'cassy-fatigue[gui]' (%s)", error)
+        logger.error(
+            "The GUI could not load PySide6/pyvistaqt; reinstall cassy-fatigue (%s)", error
+        )
         return 1
     return run_gui(argv)
 

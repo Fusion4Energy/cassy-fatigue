@@ -1,27 +1,44 @@
 [build-system]
-requires = ["setuptools>=69.5.1", "wheel"]
+requires = ["setuptools>=77", "setuptools-scm>=8.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "cassy-fatigue"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Nodal fatigue post-processing of Ansys results using CASSY design-code rules"
 readme = "README.md"
-requires-python = ">=3.10"
+license = "EUPL-1.2"
+license-files = ["LICENSE"]
+authors = [{ name = "F4E engineering analyses unit" }]
+# pandas>=3 (required by cassy-f4e) needs Python 3.11.
+requires-python = ">=3.11"
+keywords = ["fatigue", "ansys", "dpf", "fem", "design codes", "RCC-MRx", "SDC-IC"]
 classifiers = [
     "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
 ]
 dependencies = [
     "ansys-dpf-core>=0.16.3,<0.17",
-    "cassy-f4e",
+    "cassy-f4e>=3.3.2",  # first release with array support
     "numpy",
     "pyvista",
+    "PySide6>=6.6",  # GUI (installed by default: analysts use it almost always)
+    "pyvistaqt>=0.11",  # 3D widget of the Results tab
     "PyYAML>=6.0",
 ]
+
+[project.urls]
+Documentation = "https://fusion4energy.github.io/cassy-fatigue/"
+Repository = "https://github.com/Fusion4Energy/cassy-fatigue"
+Issues = "https://github.com/Fusion4Energy/cassy-fatigue/issues"
 
 [project.scripts]
 cassy-fatigue = "cassy_fatigue.cli:main"
@@ -38,9 +55,10 @@ dev = [
     "twine>=5",
 ]
 mapdl = ["ansys-mapdl-core>=0.74.1"]
-# pyvistaqt: 3D widget of the Results tab.
-gui = ["PySide6>=6.6", "pyvistaqt>=0.11"]
 docs = ["zensical"]
+
+[tool.setuptools_scm]
+# Version from the Git tag (vX.Y.Z); untagged commits get a .devN version.
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -52,7 +70,7 @@ where = ["src"]
 testpaths = ["tests"]
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 line-length = 100
 
 [tool.ruff.lint]

@@ -1,7 +1,6 @@
 # Setting up an assessment
 
-An assessment is set up in the **Configuration** tab of the GUI. It needs the `gui`
-extra (see [Installation](installation.md)).
+An assessment is set up in the **Configuration** tab of the GUI.
 
 ```bash
 cassy-fatigue gui                          # new, empty assessment

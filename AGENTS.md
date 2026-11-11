@@ -33,7 +33,8 @@ Mechanical result.
 | `src/cassy_fatigue/progress.py` | Step counting, logging, cancellation (`Progress`, `RunCancelled`) |
 | `src/cassy_fatigue/windrive.py` | Windows: temporary drive letter for a UNC Ansys install while a local DPF server runs |
 | `src/cassy_fatigue/cli.py` | `run` and `gui` subcommands; DPF connect-or-start context manager |
-| `src/cassy_fatigue/gui/` | Optional PySide6 app (`[gui]` extra): Qt-free `model.py` (project dict, legacy conversion) and `results.py` (viewer logic); `session.py` (one DPF server per session), `pages.py`, `viewer.py`, `app.py` |
+| `src/cassy_fatigue/gui/` | PySide6 app (default dependency, with pyvistaqt): Qt-free `model.py` (project dict, legacy conversion) and `results.py` (viewer logic); `session.py` (one DPF server per session), `pages.py`, `viewer.py`, `app.py` |
+| `.github/workflows/` | `tests.yml` (ruff + offline pytest, Linux + Windows, 3.11–3.14), `docs.yml` (build, Pages deploy on `main`), `publish.yml` (PyPI on GitHub release) |
 | `tests/` | Offline unit tests + opt-in live tests (`conftest.py` provides `dpf_live_server`) |
 | `benchmarks/` | Fixture generator/verifier, reader checks, DPF smoke benchmark, example YAMLs |
 | `benchmarks/fixtures/two_materials.rst` | **Git-tracked** test result (binary via `.gitattributes`) |
@@ -216,7 +217,14 @@ automatic cycle extraction/rainflow. Singularity hotspots stay mesh-dependent.
 - Report verification honestly (earlier sessions had false-positive completion claims):
   state what ran, what was skipped and why; fixture checks are not engineering
   qualification.
-- Commit only when asked, directly on `main`. No remote is configured.
+- Commit only when asked, directly on `main`. Remote: `Fusion4Energy/cassy-fatigue` on
+  GitHub; push only when asked.
+- **Releases and versions.** Version from the Git tag via setuptools-scm (`vX.Y.Z`); a
+  published GitHub release triggers `publish.yml` (PyPI trusted publishing). Requires
+  `cassy-f4e>=3.3.2` (first array-aware release; 3.3.1 lacks it) and therefore Python
+  ≥3.11 (pandas 3). CI installs CASSY from PyPI, so it cannot pass before 3.3.2 is
+  published. Tracked text files use CRLF line endings: keep them when editing.
+- README links are absolute (GitHub raw / Pages) because it is the PyPI page.
 - Keep README, `docs/` and this file in sync when behaviour changes. The docs are written
   for analysts: describe what to do and what results mean; keep module names, test
   counts and environment paths here or in `docs/development.md`.

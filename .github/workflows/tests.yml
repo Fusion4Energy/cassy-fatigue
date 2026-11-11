@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python -m pip install "ruff==0.17.4"  # keep in sync with the [dev] pin
+      - run: ruff check .
+      - run: ruff format --check .
+
+  pytest:
+    # Offline suite only: tests that need a live DPF server (CASSY_DPF_INTEGRATION=1)
+    # skip, because the runners have no Ansys installation or license.
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # setuptools-scm needs the tags
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Mesa/OpenGL for off-screen PyVista and the libraries Qt's offscreen platform needs.
+      - uses: pyvista/setup-headless-display-action@v5
+        with:
+          qt: true
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,mapdl]"
+      - name: Test
+        run: python -m pytest -q

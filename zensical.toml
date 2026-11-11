@@ -1,6 +1,9 @@
 [project]
 site_name = "cassy-fatigue"
 site_description = "Nodal fatigue assessment using ANSYS DPF and CASSY"
+site_url = "https://fusion4energy.github.io/cassy-fatigue/"
+repo_url = "https://github.com/Fusion4Energy/cassy-fatigue"
+repo_name = "Fusion4Energy/cassy-fatigue"
 docs_dir = "docs"
 site_dir = "site"
 use_directory_urls = false

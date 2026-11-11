@@ -1,4 +1,4 @@
-"""Qt editor smoke tests (offscreen). Skipped without the optional ``gui`` extra."""
+"""Qt editor smoke tests (offscreen). Skipped if PySide6 or pytest-qt is missing."""
 
 import os
 import shutil

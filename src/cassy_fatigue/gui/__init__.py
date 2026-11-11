@@ -1,1 +1,1 @@
-"""Optional desktop GUI (``pip install cassy-fatigue[gui]``)."""
+"""Desktop GUI: configuration editor and results viewer (PySide6)."""

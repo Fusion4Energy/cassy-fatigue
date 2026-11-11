@@ -4,23 +4,22 @@
 
 - **Ansys with DPF**, installed on the machine that runs the assessment, plus a license.
   `cassy-fatigue` reads results through DPF but does not need MAPDL.
-- **Python 3.10 or later**.
-- **CASSY** (`cassy-f4e`) in a version with *array support*, i.e. able to evaluate
-  material properties and fatigue curves for many nodes at once. Older, scalar-only
-  CASSY installations are rejected with an error message.
+- **Python 3.11 or later**.
+- **CASSY** (`cassy-f4e`) 3.3.2 or later, the first version with *array support*
+  (evaluating material properties and fatigue curves for many nodes at once). It is
+  installed automatically; older, scalar-only CASSY installations are rejected with an
+  error message.
 
 ## Install
 
-In the Python environment where CASSY is installed, from a checkout of the
-`cassy-fatigue` repository:
-
 ```bash
-python -m pip install -e ".[gui]"
+python -m pip install cassy-fatigue
 ```
 
-The `gui` extra installs PySide6 and pyvistaqt for the graphical editor and results
-viewer. Leave it out (`pip install -e .`) only if you will use the
-[command line](cli.md) exclusively.
+This installs the graphical editor and results viewer (PySide6, pyvistaqt) together with
+the [command line](cli.md).
+
+To work on a checkout of the repository instead, see [Development](development.md).
 
 Check the installation by starting the GUI:
 

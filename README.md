@@ -1,8 +1,8 @@
 # cassy-fatigue
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo_full_dark.svg">
-  <img src="docs/images/logo_full.svg" alt="cassy-fatigue" width="500"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Fusion4Energy/cassy-fatigue/main/docs/images/logo_full_dark.svg">
+  <img src="https://raw.githubusercontent.com/Fusion4Energy/cassy-fatigue/main/docs/images/logo_full.svg" alt="cassy-fatigue" width="500"/>
 </picture>
 
 Design-code fatigue assessment at **every node** of an Ansys Mechanical solid model.
@@ -21,18 +21,17 @@ open in a built-in 3D viewer with hotspot tables and node reports.
 
 ## Install
 
-Requirements: Ansys with DPF (and a license), Python ≥ 3.10, and CASSY (`cassy-f4e`)
-with array support. From a checkout, in the environment where CASSY is installed:
+Requirements: Ansys with DPF (and a license) and Python ≥ 3.11. CASSY (`cassy-f4e`
+3.3.2 or later) is installed automatically.
 
 ```bash
-python -m pip install -e ".[gui]"
+python -m pip install cassy-fatigue
 ```
 
 ## Use
 
 ```bash
 cassy-fatigue gui                                  # new assessment
-cassy-fatigue gui benchmarks/two_state.yaml        # open the bundled example
 cassy-fatigue gui results/example/fatigue.vtu      # results viewer only
 ```
 
@@ -43,20 +42,20 @@ units). A local DPF server is started and stopped automatically.
 
 Advanced users can write the configuration file by hand and run it from the command line
 (`cassy-fatigue run my_assessment.yaml --output results/`), see
-[Configuration file](docs/configuration.md) and [Command line](docs/cli.md).
+[Configuration file](https://fusion4energy.github.io/cassy-fatigue/configuration.html) and [Command line](https://fusion4energy.github.io/cassy-fatigue/cli.html).
 
 ## Documentation
 
-The user guide is in [`docs/`](docs/index.md). Build it as a website with
-`python -m zensical build --strict` (needs the `docs` extra), then open `site/index.html`.
+The user guide is published at <https://fusion4energy.github.io/cassy-fatigue/>.
 
-- [Getting started](docs/getting-started.md)
-- [Setting up an assessment](docs/assessment.md) and [material assignment](docs/materials.md)
-- [Results viewer](docs/viewer.md)
-- [Results](docs/outputs.md) and [troubleshooting](docs/troubleshooting.md)
-- [Scope and limitations](docs/limitations.md)
+- [Getting started](https://fusion4energy.github.io/cassy-fatigue/getting-started.html)
+- [Setting up an assessment](https://fusion4energy.github.io/cassy-fatigue/assessment.html) and [material assignment](https://fusion4energy.github.io/cassy-fatigue/materials.html)
+- [Results viewer](https://fusion4energy.github.io/cassy-fatigue/viewer.html)
+- [Results](https://fusion4energy.github.io/cassy-fatigue/outputs.html) and [troubleshooting](https://fusion4energy.github.io/cassy-fatigue/troubleshooting.html)
+- [Scope and limitations](https://fusion4energy.github.io/cassy-fatigue/limitations.html)
 
-Developers: see [docs/development.md](docs/development.md) and [AGENTS.md](AGENTS.md).
+Developers: see [Development](https://fusion4energy.github.io/cassy-fatigue/development.html) and
+[AGENTS.md](https://github.com/Fusion4Energy/cassy-fatigue/blob/main/AGENTS.md).
 
 ## Status
 

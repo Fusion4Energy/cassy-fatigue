@@ -1,0 +1,41 @@
+name: Publish to PyPI
+
+# Publishing a GitHub release tagged vX.Y.Z uploads version X.Y.Z (from setuptools-scm).
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # setuptools-scm needs the tags
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python -m pip install build twine
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    # PyPI trusted publishing: configure this repository, workflow (publish.yml) and
+    # environment (pypi) as a trusted publisher of the cassy-fatigue project on PyPI.
+    environment:
+      name: pypi
+      url: https://pypi.org/p/cassy-fatigue
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
