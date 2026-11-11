@@ -57,9 +57,4 @@ The user guide is published at <https://fusion4energy.github.io/cassy-fatigue/>.
 Developers: see [Development](https://fusion4energy.github.io/cassy-fatigue/development.html) and
 [AGENTS.md](https://github.com/Fusion4Energy/cassy-fatigue/blob/main/AGENTS.md).
 
-## Status
 
-Prototype. Results agree with CASSY's own scalar calculations for all three codes and
-with an analytic two-material test model. The tool has not been qualified for
-engineering use, and it has not yet been run on production-size models.
-A successful run means the reports were written, not that the component passes.
