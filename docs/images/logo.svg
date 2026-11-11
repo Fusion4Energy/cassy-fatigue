@@ -1,0 +1,36 @@
+<svg width="240" height="240" viewBox="0 0 240 240" role="img"
+     aria-label="cassy-fatigue logo - the CASSY pressure-boundary C and bolt nut, with a load-cycle wave through the wall"
+     xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amber" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="240" y2="240">
+      <stop offset="0%" stop-color="#FFD173"/>
+      <stop offset="100%" stop-color="#F5A623"/>
+    </linearGradient>
+    <mask id="cuts" maskUnits="userSpaceOnUse" x="0" y="0" width="240" height="240">
+      <rect width="240" height="240" fill="#fff"/>
+      <!-- gap through the wall for the load-cycle wave -->
+    <line x1="80.40" y1="159.60" x2="46.46" y2="193.54" stroke="#000" stroke-width="38" stroke-linecap="round"/>
+      <!-- gap around the nut -->
+    <polygon points="201.20,51.86 205.71,77.47 185.79,94.18 161.36,85.30 156.85,59.69 176.77,42.98"
+               fill="#000" stroke="#000" stroke-width="14" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+
+  <g transform="translate(7,0)">
+    <!-- C-shaped pressure boundary (as in CASSY) -->
+    <path d="M 181.28 68.58 A 80 80 0 1 0 181.28 171.42"
+          fill="none" stroke="url(#amber)" stroke-width="40" mask="url(#cuts)"/>
+
+    <!-- hex nut with through hole (as in CASSY) -->
+    <path fill="url(#amber)" fill-rule="evenodd"
+          d="M 201.20 51.86 L 205.71 77.47 L 185.79 94.18 L 161.36 85.30 L 156.85 59.69 L 176.77 42.98 Z
+             M 172.28 68.58 a 9 9 0 1 0 18 0 a 9 9 0 1 0 -18 0 Z"/>
+
+    <!-- load cycle through the wall, in place of CASSY's straight stress classification line -->
+    <g fill="#38D9C0" stroke="#38D9C0">
+      <path d="M 77.57 162.43 L 78.23 164.26 L 78.83 166.04 L 79.34 167.73 L 79.72 169.28 L 79.92 170.66 L 79.92 171.84 L 79.69 172.79 L 79.22 173.50 L 78.51 173.97 L 77.56 174.20 L 76.38 174.20 L 75.00 174.00 L 73.45 173.62 L 71.76 173.11 L 69.98 172.51 L 68.15 171.85 L 66.31 171.20 L 64.53 170.60 L 62.84 170.09 L 61.29 169.71 L 59.91 169.51 L 58.73 169.51 L 57.78 169.74 L 57.07 170.20 L 56.60 170.92 L 56.37 171.87 L 56.37 173.04 L 56.57 174.43 L 56.95 175.98 L 57.46 177.67 L 58.07 179.45 L 58.72 181.28 L 59.37 183.11 L 59.97 184.90 L 60.49 186.59 L 60.86 188.14 L 61.06 189.52 L 61.06 190.70 L 60.83 191.65 L 60.37 192.36 L 59.66 192.83 L 58.70 193.05 L 57.53 193.06 L 56.15 192.85 L 54.59 192.48 L 52.90 191.97 L 51.12 191.36 L 49.29 190.71" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="77.57" cy="162.43" r="7.5" stroke="none"/>
+      <circle cx="49.29" cy="190.71" r="7.5" stroke="none"/>
+    </g>
+  </g>
+</svg>

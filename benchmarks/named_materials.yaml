@@ -1,0 +1,22 @@
+code: SDC-IC
+analyses:
+  struct: fixtures/two_materials.rst
+materials:
+  MATERIAL_2: CuCrZr-IG Tr B SDC-IC
+  MATERIAL_1: SS316L(N)-IG_SDC-IC
+regions:
+  - named_selection: INTERFACE
+    welding_f: 1.5
+    dpa: 0
+loads:
+  # A load is a stress range: a signed combination of result sets, classified P or Q.
+  hot: {classification: Q, sets: [+struct:2]}
+  cold_removed: {classification: P, sets: [-struct:1]}
+fatigue_events:
+  # An event is the sum of its loads.
+  - id: pulse
+    ncycles: 100
+    loads: [hot, cold_removed]
+  - id: secondary
+    ncycles: 10
+    loads: [hot]

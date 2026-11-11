@@ -1,0 +1,46 @@
+[project]
+site_name = "cassy-fatigue"
+site_description = "Nodal fatigue assessment using ANSYS DPF and CASSY"
+docs_dir = "docs"
+site_dir = "site"
+use_directory_urls = false
+nav = [
+  { "Overview" = "index.md" },
+  { "Installation" = "installation.md" },
+  { "Getting started" = "getting-started.md" },
+  { "Setting up an assessment" = "assessment.md" },
+  { "Material assignment" = "materials.md" },
+  { "Results viewer" = "viewer.md" },
+  { "Results" = "outputs.md" },
+  { "Troubleshooting" = "troubleshooting.md" },
+  { "Scope and limitations" = "limitations.md" },
+  { "Advanced" = [
+    { "Configuration file" = "configuration.md" },
+    { "Command line" = "cli.md" },
+  ] },
+  { "Development" = "development.md" },
+]
+
+[project.theme]
+variant = "modern"
+favicon = "images/logo.svg"
+logo = "images/logo.svg"
+language = "en"
+features = ["content.code.copy", "navigation.sections", "navigation.footer", "navigation.top"]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"

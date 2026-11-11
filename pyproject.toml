@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=69.5.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cassy-fatigue"
+version = "0.1.0"
+description = "Nodal fatigue post-processing of Ansys results using CASSY design-code rules"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "ansys-dpf-core>=0.16.3,<0.17",
+    "cassy-f4e",
+    "numpy",
+    "pyvista",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+cassy-fatigue = "cassy_fatigue.cli:main"
+
+[project.gui-scripts]
+cassy-fatigue-gui = "cassy_fatigue.cli:gui_main"
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2",
+    "pytest>=8",
+    "pytest-qt>=4",
+    "ruff==0.17.4",  # pinned: bump deliberately, then re-run ruff check --fix and ruff format
+    "twine>=5",
+]
+mapdl = ["ansys-mapdl-core>=0.74.1"]
+# pyvistaqt: 3D widget of the Results tab.
+gui = ["PySide6>=6.6", "pyvistaqt>=0.11"]
+docs = ["zensical"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"cassy_fatigue.gui" = ["logo.svg"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = ["I"]  # import sorting (isort rules)
+
+[tool.ruff.lint.isort]
+known-first-party = ["cassy_fatigue"]
