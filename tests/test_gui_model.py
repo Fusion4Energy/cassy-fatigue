@@ -39,7 +39,10 @@ def test_save_elsewhere_rewrites_relative_paths(tmp_path):
     target.parent.mkdir()
     model.save_project(project, target)
     raw = yaml.safe_load(target.read_text(encoding="utf-8"))
-    assert not Path(raw["analyses"]["struct"]).is_absolute()
+    # Relative when possible; across Windows drives (e.g. CI: checkout on D:, temp on C:)
+    # no relative path exists and the absolute path is kept.
+    same_drive = Path(tmp_path).anchor.lower() == BENCHMARKS.resolve().anchor.lower()
+    assert Path(raw["analyses"]["struct"]).is_absolute() is not same_drive
     assert same_config(Config.read(target), Config.read(BENCHMARKS / "two_state.yaml"))
     assert not list(target.parent.glob(".*.tmp"))
 
